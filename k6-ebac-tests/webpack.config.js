@@ -18,6 +18,6 @@ module.exports = {
       use: 'babel-loader' 
     }],
   },
-  target: 'node',
+  target: 'web',
   externals: /k6(\/.*)?/,
 };
