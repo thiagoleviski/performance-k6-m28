@@ -2,30 +2,30 @@ import http from 'k6/http';
 import Utils from '../utils/utils';
 
 export default class Orders {
-    #id
+    #identificador
 
     postOrder(token) {
         
         let response = http.post(`${Utils.getBaseUrl()}/orders`, {
             headers: {
-                Authorization: `Bearer ${token}`
-                // Content-Type: "application/json", 
-                // Accept: "application/json"
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
             },
             body: {
-                customer: {
-                    id: "joao_das_neves"
+                "customer": {
+                    "id": "joao_das_neves"
                 },
-                discount: 0,
-                product: {
-                    id: "Great sword of all dragons"
+                "discount": 0,
+                "product": {
+                    "id": "Great sword of all dragons"
                 },
-                quantity: 1,
-                totalPrice: 10000
+                "quantity": 1,
+                "totalPrice": 10000
             }
         })
 
-        this.#id = response.customer.id;
+        this.#identificador = response.customer.id;
         check(response, { 'criação de produtos deve retornar 201': r => r && r.status === 201 })
     }
 
@@ -33,20 +33,20 @@ export default class Orders {
     getOrder(token) {
         let response = http.get(`${Utils.getBaseUrl()}/orders`, {
             headers: {
-                Authorization: `Bearer ${token}`
-                // Content-Type: "application/json", 
-                // Accept: "application/json"
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
             }
         })
         check(response, { 'listagem de produtos deve retornar 200': r => r && r.status === 200 })
     }
 
     getOrderById(token) {
-        let response = http.get(`${Utils.getBaseUrl()}/orders/${this.#id}`, {
+        let response = http.get(`${Utils.getBaseUrl()}/orders/${this.#identificador}`, {
             headers: {
-                Authorization: `Bearer ${token}`
-                // Content-Type: "application/json", 
-                // Accept: "application/json"
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
             }
         })
         check(response, { 'listagem de produto específico deve retornar 200': r => r && r.status === 200 })
@@ -54,22 +54,22 @@ export default class Orders {
 
     patchOrderById(token) {
         
-        let response = http.patch(`${Utils.getBaseUrl()}/orders/${this.#id}`, {
+        let response = http.patch(`${Utils.getBaseUrl()}/orders/${this.#identificador}`, {
             headers: {
-                Authorization: `Bearer ${token}`
-                // Content-Type: "application/json", 
-                // Accept: "application/json"
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
             },
             body: {
-                customer: {
-                    id: "branca_de_neve"
+                "customer": {
+                    "id": "branca_de_neve"
                 },
-                discount: 0,
-                product: {
-                    id: "Dwarf's magic book"
+                "discount": 0,
+                "product": {
+                    "id": "Dwarf's magic book"
                 },
-                quantity: 3,
-                totalPrice: 5000
+                "quantity": 3,
+                "totalPrice": 5000
             }
         })
 
@@ -77,11 +77,11 @@ export default class Orders {
     }
 
     deleteOrderById(token) {
-        let response = http.del(`${Utils.getBaseUrl()}/orders/${this.#id}`, {
+        let response = http.del(`${Utils.getBaseUrl()}/orders/${this.#identificador}`, {
             headers: {
-                Authorization: `Bearer ${token}`
-                // Content-Type: "application/json", 
-                // Accept: "application/json"
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
             }
         })
         check(response, { 'exclusão de produto deve retornar 200': r => r && r.status === 200 })

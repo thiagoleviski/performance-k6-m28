@@ -13,8 +13,11 @@ module.exports = {
     filename: '[name].test.js',
   },
   module: {
-    rules: [{ test: /\.js$/, use: 'babel-loader' }],
+    rules: [{ 
+      test: /\.js$/, 
+      use: 'babel-loader' 
+    }],
   },
-  target: 'web',
+  target: 'node',
   externals: /k6(\/.*)?/,
 };

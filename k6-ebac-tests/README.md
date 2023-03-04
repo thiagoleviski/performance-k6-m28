@@ -10,7 +10,7 @@ npm install --save-dev \
 webpack \
 webpack-cli \
 k6 \
-babel-loader \
+babel-loader@8.0.4 \
 @babel/core \
 @babel/preset-env \
 core-js
